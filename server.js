@@ -13,12 +13,10 @@ const runner = require('./test-runner.js');
 const app = express();
 
 // helmet security middleware
-app.use(helmet({
-  noSniff: true,
-  xssFilter: true,
-  noCache: true,
-  hidePoweredBy: false
-}));
+app.use(helmet.noSniff());
+app.use(helmet.xssFilter());
+app.use(helmet.noCache());
+app.use(helmet.hidePoweredBy({ setTo: 'PHP 7.4.3' }));
 
 // custom header mimic PHP
 app.use((req, res, next) => {
